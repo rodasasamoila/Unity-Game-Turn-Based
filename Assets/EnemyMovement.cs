@@ -18,8 +18,16 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
-              targetLocation, 3 * Time.deltaTime);
+        if (targetLocation.y != gameObject.transform.position.y)
+        {
+            gameObject.transform.position = Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
+                   new Vector2(gameObject.transform.position.x, targetLocation.y), 3 * Time.deltaTime);
+        }
+        else
+        {
+            gameObject.transform.position = Vector2.MoveTowards(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
+                   targetLocation, 3 * Time.deltaTime);
+        }
     }
 
     public void followPlayer(Vector3 position)
