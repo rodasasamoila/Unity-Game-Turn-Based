@@ -38,4 +38,8 @@ public sealed class CombatProcessor
         }
     }
 
+    public void RemoveKilledEnemy(EnemyMovement enemy)
+    {
+        enemies.Remove(enemy);
+    }
 }

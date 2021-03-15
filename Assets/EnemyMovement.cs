@@ -7,11 +7,13 @@ public class EnemyMovement : MonoBehaviour
 {
     public GameObject player;
     public Vector2 targetLocation;
+    public string Name;
     // Start is called before the first frame update
     void Start()
     {
         targetLocation = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         CombatProcessor.Instance.enemies.Add(this);
+        name = this.gameObject.name;
 
     }
 
@@ -54,5 +56,14 @@ public class EnemyMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+    void OnMouseUp()
+    {
+
+        if(checkIfPlayerIsClose(player.gameObject.transform.position))
+        {
+            CombatProcessor.Instance.RemoveKilledEnemy(this);
+            Destroy(this.gameObject);
+        }       
     }
 }
